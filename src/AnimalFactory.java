@@ -1,11 +1,18 @@
-public class AnimalFactory {
-    public static Animal getAnimalType(String animalType) {
-        if(animalType == null)
-            return null;
-        else if(animalType.equalsIgnoreCase("tiger"))
-            return new Tiger();
-        else if(animalType.equalsIgnoreCase("duck"))
-            return new Duck();
-        return null;
+public class AnimalFactory implements AnimalFactoryInterface{
+
+    @Override
+    public Animal getAnimalType(String animalType) throws Exception {
+        switch (animalType) {
+            case "Tiger":
+            case "tiger":
+            case "TIGER":
+                return new Tiger();
+            case "Duck":
+            case "duck":
+            case "DUCK":
+                return new Duck();
+            default:
+                throw new Exception("Animal type: " + animalType + " cannot be instantiated");
+        }
     }
 }
